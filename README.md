@@ -1,6 +1,6 @@
 # Student Performance Predictor & Risk Analyzer
 
-A command-line Python program that takes a student's past test scores, attendance and assignment submission rate, then prints a performance report with a predicted next score and a risk level.
+A command-line Python program. You enter a student's past test scores, attendance and assignment submission rate. It prints a report with the average, the trend, a predicted next score and a risk level, plus some recommendations.
 
 ## Requirements
 
@@ -12,10 +12,10 @@ A command-line Python program that takes a student's past test scores, attendanc
 
 1. Clone the repository:
    ```
-   git clone https://github.com/{github-username}/{repo-name}.git
-   cd {repo-name}
+   git clone https://github.com/Atulprakash-ez/Class_project.git
+   cd Class_project
    ```
-2. Check Python is installed:
+2. Check that Python is installed:
    ```
    python --version
    ```
@@ -25,12 +25,16 @@ A command-line Python program that takes a student's past test scores, attendanc
    python -m venv venv
    source venv/bin/activate      # Windows: venv\Scripts\activate
    ```
-4. Dependencies: none to install. No configuration files or environment variables are needed.
+4. Install dependencies. There are none, but this command also works:
+   ```
+   pip install -r requirements.txt
+   ```
+5. Configuration: none needed. No environment variables or config files are used.
 
 ## Run
 
 ```
-python student_performance.py
+python main.py
 ```
 
 ## Inputs
@@ -55,21 +59,32 @@ Score 3 (0-100): 70
 Score 4 (0-100): 75
 Attendance % : 90
 Assignments submitted % : 80
-```
 
-The output is a report with the scores, average, highest/lowest, trend per test, predicted next score with its category, risk score and level, and recommendations.
+------ REPORT ------
+Scores        : [60.0, 65.0, 70.0, 75.0]
+Average       : 67.50
+High / Low    : 75.0 / 60.0
+Trend         : +5.00 per test
+Predicted next: 80.00 (Good)
+Risk          : 21.00 -> LOW
+
+Recommendations:
+ - Keep up the consistent performance.
+```
 
 ## How it works
 
-- **Average**: mean of all scores.
-- **Trend**: average change between consecutive tests.
-- **Prediction**: last score plus the trend, clamped to 0-100.
-- **Category**: Excellent (85+), Good (70+), Average (50+), otherwise At Risk.
-- **Risk score**: `0.4*(100-attendance) + 0.4*(100-average) + 0.2*(100-assignments)`
-- **Risk level**: LOW (< 25), MEDIUM (< 50), HIGH (50 or more).
-- **Recommendations**: rule-based tips based on attendance, average, assignments and trend.
+- **Average:** mean of all scores.
+- **Trend:** average change between consecutive tests.
+- **Prediction:** last score plus the trend, limited to 0-100.
+- **Category:** Excellent (85+), Good (70+), Average (50+), otherwise At Risk.
+- **Risk score:** `0.4*(100-attendance) + 0.4*(100-average) + 0.2*(100-assignments)`
+- **Risk level:** LOW (below 25), MEDIUM (below 50), HIGH (50 or more).
+- **Recommendations:** simple rule-based tips based on attendance, average, assignments and trend.
 
 ## Files
 
-- `student_performance.py` - the full program
+- `main.py` - the full program
+- `requirements.txt` - dependency list (empty, standard library only)
+- `.gitignore` - files Git should ignore
 - `README.md` - this file
